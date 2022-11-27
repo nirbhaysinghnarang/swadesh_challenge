@@ -50,7 +50,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
     if (_isLoading) {
       return const Expanded(
         child: Center(
-            child: CircularProgressIndicator(color: Colors.purpleAccent)),
+            child: CircularProgressIndicator(color: Colors.deepPurpleAccent)),
       );
     }
     return Expanded(
@@ -206,7 +206,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
                         width: MediaQuery.of(context).size.width * 0.8,
                         height: 60,
                         decoration: const BoxDecoration(
-                            color: Colors.purple,
+                            color: Colors.deepPurpleAccent,
                             borderRadius:
                                 BorderRadius.all(Radius.circular(12))),
                       ),

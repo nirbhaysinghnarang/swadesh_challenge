@@ -8,6 +8,7 @@ import 'package:swadesh_challenge/Widgets/balance_widget.dart';
 import 'package:swadesh_challenge/Widgets/transaction_widget.dart';
 import 'package:swadesh_challenge/Models/transaction.dart';
 import 'package:skeleton_text/skeleton_text.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -35,12 +36,12 @@ class _HomePageState extends State<HomePage> {
     userData = client.fetchData();
   }
 
-  void refreshData() {
-    userData = client.fetchData();
+  Future<void> _refreshData() {
+    return (userData = client.fetchData());
   }
 
   FutureOr<dynamic> onGoBack(dynamic value) {
-    refreshData();
+    _refreshData();
     setState(() {});
   }
 
@@ -105,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                 width: MediaQuery.of(context).size.width * 0.8,
                 height: 60,
                 decoration: const BoxDecoration(
-                    color: Colors.purple,
+                    color: Colors.deepPurpleAccent,
                     borderRadius: BorderRadius.all(Radius.circular(12))),
               ),
               onPressed: () {
@@ -163,16 +164,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _listView(List<Transaction> trans) {
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: trans.length,
-        itemBuilder: (context, index) {
-          return TransactionWidget(
-              accHolderName: trans[index].accHolderName,
-              date: trans[index].purposeCode,
-              initTime: trans[index].timeStamp,
-              amount: trans[index].amount);
-        });
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: LiquidPullToRefresh(
+          backgroundColor: Colors.black,
+          color: Colors.deepPurpleAccent,
+          onRefresh: _refreshData,
+          child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: trans.length,
+              itemBuilder: (context, index) {
+                return TransactionWidget(
+                    accHolderName: trans[index].accHolderName,
+                    date: trans[index].purposeCode,
+                    initTime: trans[index].timeStamp,
+                    amount: trans[index].amount);
+              })),
+    );
   }
 
   Widget appBarTitle() {
@@ -210,7 +218,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget divider() {
     return (const Divider(
-      color: Colors.purpleAccent,
+      color: Colors.deepPurpleAccent,
       height: 20,
       thickness: 2,
       indent: 16,
