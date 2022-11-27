@@ -1,10 +1,9 @@
 import 'transaction.dart';
 
 class UserData {
-  num? userBalance = 1000;
   List<dynamic>? userTransactions = [];
 
-  UserData({this.userBalance, this.userTransactions});
+  UserData({this.userTransactions});
 
   factory UserData.fromJson(Map<String, dynamic> json) {
     final jsonList = json["transactions"];
@@ -13,8 +12,6 @@ class UserData {
       final transaction = Transaction.fromJson(jsonList[i]);
       transactionList.add(transaction);
     }
-    return UserData(
-        userBalance: double.parse((json['userBalance'])),
-        userTransactions: transactionList);
+    return UserData(userTransactions: transactionList);
   }
 }
