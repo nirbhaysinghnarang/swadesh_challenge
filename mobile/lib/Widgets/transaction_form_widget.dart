@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swadesh_challenge/Client/api_client.dart';
 import 'package:swadesh_challenge/Models/transaction.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TransactionFormWidget extends StatefulWidget {
   const TransactionFormWidget({Key? key}) : super(key: key);
@@ -89,7 +90,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
                   } else if (num.tryParse(value) == null) {
                     return "Account number must be numeric.";
                   } else if (value.length > 12) {
-                    return 'Name cannot exceed 12 digits';
+                    return 'Number cannot exceed 12 digits';
                   }
                   return null;
                 },
@@ -182,64 +183,66 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Processing Data'),
-                          backgroundColor: Colors.purpleAccent,
+                    child: Container(
+                      child: const Center(
+                        child: Text(
+                          "Make payment",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700),
                         ),
-                      );
-                    }
-                  },
-                  child: ElevatedButton(
-                      child: Container(
-                        child: const Center(
-                          child: Text(
-                            "Make payment",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: 60,
-                        decoration: const BoxDecoration(
-                            color: Colors.deepPurpleAccent,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12))),
                       ),
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')));
-                          setState(() {
-                            _isLoading = true;
-                          });
-                          final newTrans = Transaction(
-                              amount: num.parse(amountController.text),
-                              accHolderName: accNameController.text,
-                              accNo: num.parse(accNoController.text),
-                              routingNo: num.parse(routingNoController.text),
-                              timeStamp: 0,
-                              purposeCode: _purposeCode);
-                          client
-                              .addTransaction(newTrans)
-                              .then((response) => setState(() {
-                                    _isLoading = false;
-                                    if (response.statusCode == 200) {
-                                      Navigator.pop(context);
-                                    } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(const SnackBar(
-                                              content:
-                                                  Text('An error occured.')));
-                                    }
-                                  }));
-                        }
-                      }),
-                ),
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                          color: Colors.deepPurpleAccent,
+                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                    ),
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        Fluttertoast.showToast(
+                            msg: "Processing...",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor:
+                                const Color.fromRGBO(236, 232, 26, 1),
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+
+                        setState(() {
+                          _isLoading = true;
+                        });
+                        final newTrans = Transaction(
+                            amount: num.parse(amountController.text),
+                            accHolderName: accNameController.text,
+                            accNo: num.parse(accNoController.text),
+                            routingNo: num.parse(routingNoController.text),
+                            timeStamp: 0,
+                            purposeCode: _purposeCode);
+                        client.addTransaction(newTrans).then((response) =>
+                            setState(() {
+                              _isLoading = false;
+                              if (response.statusCode == 200) {
+                                Fluttertoast.showToast(
+                                    msg: "Success!",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor:
+                                        const Color.fromRGBO(75, 181, 67, 1),
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                Navigator.pop(context);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('An error occured.')));
+                              }
+                            }));
+                      }
+                    }),
               ),
             ],
           ),

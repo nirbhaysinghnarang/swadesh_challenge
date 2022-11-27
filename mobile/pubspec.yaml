@@ -35,7 +35,7 @@ dependencies:
   dropdown_formfield: ^0.1.4
   intl: ^0.17.0
   liquid_pull_to_refresh: ^3.0.1
-
+  fluttertoast: ^8.1.1
   avatars: ^3.0.0
 
 
