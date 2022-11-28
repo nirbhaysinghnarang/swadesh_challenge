@@ -63,7 +63,6 @@ def create_item(_id):
   resp = json.loads(requests.get(url).text)
   assert (resp["transactions"]==[])
   assert(resp['userBalance']=='1000')
-  print(resp['deviceId'], _id)
   assert(resp['deviceId']==_id)
   assert(resp['new']=='True')
 
