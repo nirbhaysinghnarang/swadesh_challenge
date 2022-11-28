@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
       child: Text(
         'Transactions',
         style: TextStyle(
-            fontWeight: FontWeight.w500, color: Colors.white, fontSize: 25),
+            fontWeight: FontWeight.w700, color: Colors.white, fontSize: 25),
       ),
     ));
   }

@@ -22,7 +22,7 @@ class _BalanceWidgetState extends State<BalanceWidget> {
           const Text(
             'Balance',
             style: TextStyle(
-                fontWeight: FontWeight.w500, color: Colors.white, fontSize: 25),
+                fontWeight: FontWeight.w700, color: Colors.white, fontSize: 25),
           ),
           Text(
             '\$ ${widget.balanceAmount}',

@@ -31,7 +31,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           nameDateWidget(
               widget.accHolderName ?? "",
               widget.date ?? "",
-              DateTime.now().millisecondsSinceEpoch! -
+              DateTime.now().millisecondsSinceEpoch -
                       (widget.initTime! * 1000) <
                   TransactionWidget.processingTime),
           Text(
@@ -40,7 +40,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                 ? "-"
                 : '\$${widget.amount?.toStringAsFixed(2)}'),
             style: const TextStyle(
-                fontWeight: FontWeight.w500, color: Colors.red, fontSize: 25),
+                fontWeight: FontWeight.w700, color: Colors.red, fontSize: 16),
           ),
         ],
       ),
@@ -60,7 +60,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           children: [
             Avatar(
               name: isProcessing ? "Processing" : name,
-              shape: AvatarShape.circle(25),
+              shape: AvatarShape.circle(30),
             ),
             const SizedBox(
               width: 10,
@@ -73,18 +73,21 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                   isProcessing ? "Processing" : name,
                   style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: FontWeight.w700),
                 ),
-                Container(
-                  constraints:
-                      const BoxConstraints(minWidth: 10, maxWidth: 150),
-                  child: Text(
-                    isProcessing ? "Initiated on $dateString" : dateString,
-                    style: const TextStyle(
+                Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Container(
+                    constraints:
+                        const BoxConstraints(minWidth: 10, maxWidth: 150),
+                    child: Text(
+                      isProcessing ? "Initiated on $dateString" : dateString,
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 12,
-                        fontStyle: FontStyle.italic),
+                      ),
+                    ),
                   ),
                 ),
               ],

@@ -21,3 +21,5 @@ To display proficiency with your backend stack, I made the decision to add a bac
   2. Initialise the information for each id in DynamoDB, using the GET request.
   3. Given a number of transactions to perform, perform those transactions, keeping track of the amount in each transaction, as a running sum.
   4. Verify that the sum of transactions stored on the backend is the same as the sum above.
+
+[Simulator Screen Recording](https://www.youtube.com/watch?v=ZLzxdcht66E)

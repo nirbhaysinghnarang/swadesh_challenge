@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          colorScheme:
-              ColorScheme.fromSwatch().copyWith(primary: Colors.black)),
+          colorScheme: ColorScheme.fromSwatch().copyWith(primary: Colors.black),
+          fontFamily: 'Inter-Regular'),
       home: const HomePage(),
     );
   }
