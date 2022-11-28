@@ -17,6 +17,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  ///Calculate the balance of a user given a list of transactions, with the starting balance as [1000]
+  ///Appropriately filters the list of transactions to only include transactions that have been processed.
+  ///A processed transaction is a transaction which was initiated at least 10 minutes ago.
   num calculateBalance(List<Transaction> transList) {
     return 1000 -
         transList
