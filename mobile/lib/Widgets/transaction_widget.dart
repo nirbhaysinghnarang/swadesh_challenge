@@ -7,7 +7,7 @@ class TransactionWidget extends StatefulWidget {
   final String? date;
   final num? amount;
   final num? initTime;
-  final num? renderTime = DateTime.now().millisecondsSinceEpoch;
+
   static num processingTime = 600000;
   TransactionWidget(
       {Key? key, this.accHolderName, this.date, this.amount, this.initTime})
@@ -31,10 +31,11 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           nameDateWidget(
               widget.accHolderName ?? "",
               widget.date ?? "",
-              widget.renderTime! - (widget.initTime! * 1000) <
+              DateTime.now().millisecondsSinceEpoch! -
+                      (widget.initTime! * 1000) <
                   TransactionWidget.processingTime),
           Text(
-            (widget.renderTime! - (widget.initTime! * 1000) <
+            (DateTime.now().millisecondsSinceEpoch - (widget.initTime! * 1000) <
                     TransactionWidget.processingTime
                 ? "-"
                 : '\$${widget.amount?.toStringAsFixed(2)}'),

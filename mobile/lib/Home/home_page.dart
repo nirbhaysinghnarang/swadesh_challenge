@@ -25,8 +25,9 @@ class _HomePageState extends State<HomePage> {
         transList
             .where((transaction) =>
                 DateTime.now().millisecondsSinceEpoch -
-                    (transaction.timeStamp * 1000) >
+                    (transaction.timeStamp * 10000) >
                 60000)
+            .toList()
             .fold(0,
                 (previousValue, element) => (previousValue + element.amount));
   }

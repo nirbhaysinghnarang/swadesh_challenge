@@ -8,6 +8,7 @@ class TransactionFormPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.black,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
