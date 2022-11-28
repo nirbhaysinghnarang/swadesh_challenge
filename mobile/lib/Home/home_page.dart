@@ -25,8 +25,8 @@ class _HomePageState extends State<HomePage> {
         transList
             .where((transaction) =>
                 DateTime.now().millisecondsSinceEpoch -
-                    (transaction.timeStamp * 10000) >
-                60000)
+                    (transaction.timeStamp * 1000) >
+                600000)
             .toList()
             .fold(0,
                 (previousValue, element) => (previousValue + element.amount));
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                 height: 60,
                 decoration: const BoxDecoration(
                     color: Colors.deepPurpleAccent,
-                    borderRadius: BorderRadius.all(Radius.circular(12))),
+                    borderRadius: BorderRadius.all(Radius.circular(24))),
               ),
               onPressed: () {
                 Navigator.push(
@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           ConstrainedBox(
               constraints: BoxConstraints(
-                  minHeight: 100,
+                  minHeight: MediaQuery.of(context).size.height * 0.45,
                   maxHeight: MediaQuery.of(context).size.height * 0.5),
               child: _listView(transactionsList)),
           Padding(

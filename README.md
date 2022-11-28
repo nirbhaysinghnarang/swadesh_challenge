@@ -23,3 +23,5 @@ To display proficiency with your backend stack, I made the decision to add a bac
   4. Verify that the sum of transactions stored on the backend is the same as the sum above.
 
 [Simulator Screen Recording](https://www.youtube.com/watch?v=ZLzxdcht66E)
+PS. In this recording, the balance decreases even though the transaction has been processed.
+This bug has been fixed, along with other small UI improvements.

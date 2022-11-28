@@ -204,7 +204,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
                       height: 60,
                       decoration: const BoxDecoration(
                           color: Colors.deepPurpleAccent,
-                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                          borderRadius: BorderRadius.all(Radius.circular(24))),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
