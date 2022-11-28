@@ -64,6 +64,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextFormField(
+                key: const Key("accNameTf"),
                 controller: accNameController,
                 style: const TextStyle(color: Colors.white),
                 decoration: _getTextFieldDecoration(
@@ -78,6 +79,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
                 },
               ),
               TextFormField(
+                key: const Key("accNoTf"),
                 controller: accNoController,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: false),
@@ -96,6 +98,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
                 },
               ),
               TextFormField(
+                key: const Key("routeNoTf"),
                 controller: routingNoController,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: false),
@@ -114,6 +117,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
                 },
               ),
               TextFormField(
+                key: const Key("amountTf"),
                 controller: amountController,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
@@ -131,6 +135,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
                 },
               ),
               TextFormField(
+                key: const Key("descTf"),
                 controller: descController,
                 minLines: 2,
                 maxLines: 4,
@@ -146,6 +151,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
               ),
               DropdownButtonHideUnderline(
                 child: DropdownButtonFormField<String>(
+                  key: const Key("purposeDropdown"),
                   decoration: _getTextFieldDecoration(
                       "Purpose Code", "Choose Purpose Code"),
                   hint: const Align(
@@ -175,6 +181,7 @@ class _TransactionFormWidgetState extends State<TransactionFormWidget> {
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
+                      key: Key(value),
                       child: Text(value),
                     );
                   }).toList(),

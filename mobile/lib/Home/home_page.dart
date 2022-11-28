@@ -124,7 +124,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget getSkeleton() {
     return (Center(
-        child: Expanded(
       child: SkeletonAnimation(
         shimmerColor: Colors.grey,
         borderRadius: BorderRadius.circular(20),
@@ -137,15 +136,23 @@ class _HomePageState extends State<HomePage> {
           margin: const EdgeInsets.only(top: 40),
         ),
       ),
-    )));
+    ));
   }
 
   Widget transactionWidget(List<dynamic>? transactions) {
     if ((transactions ?? []).isEmpty) {
-      return (const Center(
-          child: Image(
-        image: AssetImage('assets/error.png'),
-        width: 240,
+      return (Center(
+          child: Column(
+        children: [
+          const Image(
+            image: AssetImage('assets/error.png'),
+            width: 240,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24.0),
+            child: transactionButton(context),
+          )
+        ],
       )));
     } else {
       final transactionsList = transactions!.cast<Transaction>().toList();
